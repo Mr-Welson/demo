@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>滚动条美化</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+    }
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      padding: 20px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    .scroll, .demo {
+      flex: 0 0 32%;
+      overflow: scroll;
+      height: 30%;
+      background: #f7f8f9;
+      position: relative;
+    }
+    .inner {
+      width: 200%;
+      height: 200%;
+      display: flex;
+    }
+    .text {
+      position: relative;
+      text-align: center;
+      top: 50%;
+      left:50%;
+      -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+      font-size: 20px;
+    }
+    /* 修改滚动条颜色和宽度 必须的 */
+    .scroll:not(:first-of-type)::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      border: 2px solid purple;
+      border-radius: 5px;
+      background-color: cadetblue;
+    }
+
+    /* 滑块样式 */
+    .scroll-2::-webkit-scrollbar-thumb,
+    .scroll-3::-webkit-scrollbar-thumb,
+    .scroll-4::-webkit-scrollbar-thumb,
+    .scroll-5::-webkit-scrollbar-thumb,
+    .scroll-6::-webkit-scrollbar-thumb {
+      border: 2px solid #000;
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    /* 滚动条两端的按钮样式 */
+    .scroll-3::-webkit-scrollbar-button,
+    .scroll-4::-webkit-scrollbar-button,
+    .scroll-5::-webkit-scrollbar-button {
+      width: 50px;
+      height: 50px;
+      border: 2px solid red;
+      border-radius: 5px;
+      background: gold;
+    }
+
+    /* 滚动条外层轨道样式 */
+    .scroll-4::-webkit-scrollbar-track,
+    .scroll-5::-webkit-scrollbar-track {
+      border: 2px solid gold;   /* 会被内层轨道白色边框遮盖 */
+      background-color: green;  /* 会被内层轨道黑色背景遮盖 */
+    }
+    
+    /* 滚动条内层轨道样式 */
+    .scroll-4::-webkit-scrollbar-track-piece,
+    .scroll-5::-webkit-scrollbar-track-piece {
+      border-radius: 5px;
+      border: 2px solid #fff;
+      background-color: #000;
+    }
+
+    /* 横向滚动条和纵向滚动条交汇处样式 */
+    .scroll-5::-webkit-scrollbar-corner {
+      background-color: red;
+      border: 2px solid green;
+      border-radius: 5px;
+    }
+
+    /* 万恶的IE */
+    .scroll-0{
+      /* 设置滚动条主要构成部分的颜色 */
+      scrollbar-base-color: red;
+      /* 设置滚动框和滚动条箭头的颜色 滑块 */
+      scrollbar-face-color: #000;
+      /* 设置滚动框的和滚动条箭头右下边缘的颜色 滑块边框 */
+      scrollbar-shadow-color: red;
+      /* 设置滚动条箭头的颜色 */
+      scrollbar-arrow-color: red;
+      /* 设置滚动条轨迹组成部分的颜色 滚动条内层轨道 */
+      scrollbar-track-color:green;
+      /* 设置滚动框的和滚动条箭头左上边缘的颜色 */
+      scrollbar-highlight-color:blue;
+      /* 设置滚动框的和滚动条箭头左上边缘的颜色 */
+      scrollbar-3dlight-color:blue; 
+      /* 设置滚动条槽的颜色 */
+      scrollbar-darkshadow-color:blue;
+    }
+
+    .demo-1::-webkit-scrollbar {
+      width: 3px;
+      height: 3px;
+      background: #fff;
+    }
+    .demo-1::-webkit-scrollbar-thumb {
+      background: #fff;
+      border: 2px solid #000;
+    }
+    .demo-1::-webkit-scrollbar-track {
+      background-color: #000;
+      border: 5px dashed #fff;
+    }
+    .demo-1::-webkit-scrollbar-corner {
+      background-color: #000;
+      border: 2px solid #000;
+    }
+
+    .demo-2{
+      background: #fff;
+    }
+    .demo-2::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background: transparent;
+    }
+    .demo-2::-webkit-scrollbar-thumb {
+      background: #ddd;
+      border: 2px solid #fff;
+      border-radius: 5px;
+    }
+    .demo-2::-webkit-scrollbar-corner {
+      background-color: transparent;
+    }
+
+    .demo-3{
+      background: #fff;
+    }
+    .demo-3::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+      background: #eee;
+    }
+    .demo-3::-webkit-scrollbar-thumb {
+      background: #fff;
+      border: 2px solid #000;
+      border-radius: 5px;
+    }
+    .demo-3::-webkit-scrollbar-track {
+      background-color: #000;
+      border: 3px solid #fff;
+      border-radius: 5px;
+    }
+    .demo-3::-webkit-scrollbar-corner {
+      background-color: #000;
+      border-radius: 5px;
+      border: 2px solid #fff;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="scroll scroll-0">
+    <div class="text"> 默认滚动条 </div>
+    <div class="inner"> </div>
+  </div>
+  <div class="scroll scroll-1">
+    <div class="text"> 
+      1. 修改滚动条背景色和尺寸<br />(军蓝底紫边圆角)
+    </div>
+    <div class="inner"></div>
+  </div>
+  <div class="scroll scroll-2">
+    <div class="text"> 2. 修改滑块样式<br />(白底黑边圆角) </div>
+    <div class="inner"></div>
+  </div>
+  <div class="scroll scroll-3">
+    <div class="text"> 3. 修改滚动条两端的按钮样式<br />(金底红边圆角) </div>
+    <div class="inner"></div>
+  </div>
+  <div class="scroll scroll-4">
+    <div class="text"> 
+        4. 修改滚动条轨道样式<br />
+        (黑底白边圆角) <br />
+        内层轨道会遮盖外层轨道样式<br />
+        因此只需设置一个即可
+    </div>
+    <div class="inner"></div>
+  </div>
+  <div class="scroll scroll-5">
+    <div class="text"> 
+      5. 修改横向滚动条和纵向滚动条交汇处样式(右下角小圆点)<br /> 
+      (红底绿边圆角)
+    </div>
+    <div class="inner"></div>
+  </div>
+  <div class="demo demo-1">
+    <div class="text"> 
+      demo 1
+    </div>
+    <div class="inner"></div>
+  </div>
+  <div class="demo demo-2">
+    <div class="text"> 
+      demo 2
+    </div>
+    <div class="inner"></div>
+  </div>
+  <div class="demo demo-3">
+    <div class="text"> 
+      demo 3
+    </div>
+    <div class="inner"></div>
+  </div>
+</body>
+</html>
