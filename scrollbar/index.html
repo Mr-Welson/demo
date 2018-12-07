@@ -19,8 +19,20 @@
       flex-wrap: wrap;
       justify-content: space-around;
       padding: 20px;
+      padding-top: 50px;
       box-sizing: border-box;
       background: #fff;
+
+    }
+    .tip {
+      position: absolute;
+      top: 0px;
+      padding: 4px 0px;
+      font-size: 20px;
+      background: #000;
+      color: #fff;
+      width: 100%;
+      text-align: center;
     }
     .scroll, .demo {
       flex: 0 0 32%;
@@ -42,7 +54,7 @@
       -webkit-transform: translate(-50%,-50%);
       -ms-transform: translate(-50%,-50%);
       transform: translate(-50%,-50%);
-      font-size: 20px;
+      font-size: 16px;
     }
     /* 修改滚动条颜色和宽度 必须的 */
     .scroll:not(:first-of-type)::-webkit-scrollbar {
@@ -179,8 +191,11 @@
   </style>
 </head>
 <body>
+  <h2 class="tip">滚动条美化，只在谷歌浏览器生效</h2>
   <div class="scroll scroll-0">
-    <div class="text"> 默认滚动条 </div>
+    <div class="text">
+       默认滚动条<br />(IE有彩蛋)
+    </div>
     <div class="inner"> </div>
   </div>
   <div class="scroll scroll-1">
@@ -208,7 +223,7 @@
   </div>
   <div class="scroll scroll-5">
     <div class="text"> 
-      5. 修改横向滚动条和纵向滚动条交汇处样式(右下角小圆点)<br /> 
+      5. 修改横向滚动条和纵向滚动条交汇处(右下角小圆点)<br /> 
       (红底绿边圆角)
     </div>
     <div class="inner"></div>
