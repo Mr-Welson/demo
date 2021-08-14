@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>航线展示</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      #map {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+    <script src="./libs/echarts.5.1.2.min.js"></script>
+    <script src="./libs/china.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script src="./libs/bmap-city.js"></script>
+    <script src="./planeData.js"></script>
+    <script>
+      // 航线指示小图标
+      var convertData = function (data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+          var dataItem = data[i];
+
+          var fromCoord = geoCoordMap[dataItem[0].name];
+          var toCoord = geoCoordMap[dataItem[1].name];
+          if (fromCoord && toCoord) {
+            res.push({
+              fromName: dataItem[0].name,
+              toName: dataItem[1].name,
+              coords: [fromCoord, toCoord],
+              value: dataItem[1].value,
+            });
+          }
+        }
+        return res;
+      };
+      var series = [];
+      planeData.forEach(function (item) {
+        series.push(
+          {
+            // 拖尾效果
+            type: "lines",
+            name: item.title + " Top3",
+            // zlevel 用于 Canvas 分层，不同 zlevel 值的图形会放置在不同的 Canvas 中
+            zlevel: 1,
+            effect: {
+              show: true,
+              //箭头指向速度，值越小速度越快
+              period: 5,
+              //特效尾迹长度[0,1]值越大，尾迹越长重
+              trailLength: 0.7,
+              color: "red", //arrow箭头的颜色
+              //箭头图标
+              symbol: "arrow",
+              //图标大小
+              symbolSize: 3,
+            },
+            lineStyle: {
+              normal: {
+                color: item.lineColor,
+                // 尾迹线条宽度
+                width: 0.1,
+                // 尾迹线条曲直度
+                curveness: 0.2,
+                // 尾迹线条透明度
+                opacity: 0.5,
+              },
+            },
+            data: convertData(item.data),
+          },
+          {
+            // 航线及小飞机图标
+            name: item.title + " Top3",
+            type: "lines",
+            zlevel: 2,
+            symbol: ["none", "arrow"],
+            symbolSize: 10,
+            effect: {
+              show: true,
+              period: 5,
+              trailLength: 0,
+              // symbol: planePath,
+              // symbolSize: 15,
+              symbol: "arrow",
+              symbolSize: 15,
+            },
+            lineStyle: {
+              normal: {
+                color: item.lineColor,
+                width: 0.1,
+                //尾迹线条透明度
+                opacity: 0.6,
+                //尾迹线条曲直度
+                curveness: 0.2,
+              },
+            },
+            data: convertData(item.data),
+          },
+          {
+            type: "scatter",
+            coordinateSystem: "geo",
+            label: {
+              normal: {
+                show: true,
+                formatter: "{b}",
+                position: [1, 0, 0, 0],
+                backgroundColor: "rgba(0,2,89,.75)",
+                padding: [0, 0],
+                borderRadius: [0, 3, 3, 0],
+                lineHeight: 25,
+                color: "#ffffff",
+                rich: {
+                  fline: {
+                    padding: [0, 5, 0, 10],
+                    color: "#ffffff",
+                    fontSize: 16,
+                  },
+                  tline: {
+                    padding: [0, 10, 0, 5],
+                    color: "#ffffff",
+                    fontSize: 16,
+                  },
+                },
+              },
+              emphasis: {
+                show: true,
+              },
+            },
+            itemStyle: {
+              color: "#00FFF6",
+            },
+            symbol: "rect",
+            symbolSize: [1, 70],
+            // z: 999,
+            data: item.data.map(function (dataItem) {
+              console.log(dataItem[1]);
+              console.log(geoCoordMap[dataItem[1].name]);
+              console.log(JSON.parse(JSON.stringify(geoCoordMap)));
+              return {
+                name: dataItem[1].name,
+                value: geoCoordMap[dataItem[1].name].concat([
+                  dataItem[1].value,
+                ]),
+              };
+            }),
+          }
+          // {
+          //   // 点位
+          //   name: item.title + " Top3",
+          //   type: "effectScatter",
+          //   coordinateSystem: "geo",
+          //   showEffectOn: "render",
+          //   hoverAnimation: true,
+          //   zlevel: 2,
+          //   rippleEffect: {
+          //     // period: 15,
+          //     // scale: 3,
+          //     brushType: "stroke", // fill
+          //   },
+          //   label: {
+          //     normal: {
+          //       show: true,
+          //       position: "right",
+          //       formatter: "{b}",
+          //     },
+          //   },
+          //   symbolSize: function (val) {
+          //     return val[2] / 8;
+          //   },
+          //   itemStyle: {
+          //     normal: {
+          //       color: item.lineColor,
+          //       shadowBlur: 10,
+          //     },
+          //     emphasis: {
+          //       areaColor: "#2B91B7",
+          //     },
+          //   },
+          //   data: item.data.map(function (dataItem) {
+          //     return {
+          //       name: dataItem[1].name,
+          //       value: geoCoordMap[dataItem[1].name].concat([
+          //         dataItem[1].value,
+          //       ]),
+          //     };
+          //   }),
+          // }
+        );
+      });
+
+      console.log(series);
+      var option = {
+        // 画布背景色
+        backgroundColor: "#181F4E",
+        // 画布标题属性
+        title: {
+          text: "航线展示",
+          subtext: "数据纯属虚构",
+          sublink: "#",
+          left: "center",
+          textStyle: {
+            color: "#fff",
+          },
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: function (params, ticket, callback) {
+            if (params.seriesType == "effectScatter") {
+              return "线路：" + params.data.name + "" + params.data.value[2];
+            } else if (params.seriesType == "lines") {
+              return (
+                params.data.fromName +
+                ">" +
+                params.data.toName +
+                "<br />" +
+                params.data.value
+              );
+            } else {
+              return params.name;
+            }
+          },
+        },
+        // 图例
+        legend: {
+          // 垂直展示
+          orient: "vertical",
+          // 位置（右下角）
+          top: "bottom",
+          left: "right",
+          // 数据
+          data: ["西安 Top3", "西宁 Top3", "银川 Top3"],
+          textStyle: {
+            color: "#fff",
+          },
+          selectedMode: "multiple",
+        },
+        geo: {
+          map: "china",
+          // 是否开启鼠标缩放和平移漫游,可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+          roam: true,
+          // 当前视角的缩放比例，默认为1。
+          zoom: 1,
+          // 滚轮缩放的极限控制，通过min, max最小和最大的缩放值，默认的缩放为1。
+          scaleLimit: {
+            min: 0.8,
+            max: 4,
+          },
+          // cale 地图的长宽比，默认为 0.75
+          aspectScale: 0.75,
+          // 当前视角的中心点，用经纬度表示
+          center: [115.97, 29.71],
+          // 选中模式，表示是否支持多个选中，默认关闭，支持布尔值和字符串，字符串取值可选'single'表示单选，或者'multiple'表示多选。
+          selectedMode: "single",
+          // 图块上的文本标签
+          label: {
+            // hover 时样式
+            emphasis: {
+              show: true,
+              color: "#fff",
+            },
+          },
+          // 图块样式
+          itemStyle: {
+            // 默认状态下的样式
+            normal: {
+              areaColor: "#00186E",
+              borderColor: "#195BB9",
+              borderWidth: 1,
+            },
+            // 高亮状态下的样式
+            emphasis: {
+              areaColor: "#2B91B7",
+            },
+          },
+          // left: "35%",
+          // top: "20%",
+          layoutCenter: ["60%", "60%"],
+          layoutSize: "100%",
+        },
+        series: series,
+      };
+
+      var chartDom = document.getElementById("map");
+      var myChart = echarts.init(chartDom);
+      // myChart.showLoading();
+      // myChart.hideLoading();
+      myChart.setOption(option);
+    </script>
+  </body>
+</html>
