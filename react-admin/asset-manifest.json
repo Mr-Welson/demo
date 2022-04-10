@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/demo/react-admin/static/css/main.99090e17.css",
-    "main.js": "/demo/react-admin/static/js/main.0cb2b36d.js",
+    "main.js": "/demo/react-admin/static/js/main.bd6c0881.js",
     "vendors~main.css": "/demo/react-admin/static/css/vendors~main.df463b40.chunk.css",
     "vendors~main.js": "/demo/react-admin/static/js/vendors~main.73e94b5a.chunk.js",
     "static/css/2.4444f990.chunk.css": "/demo/react-admin/static/css/2.4444f990.chunk.css",
@@ -24,13 +24,13 @@
     "static/js/11.6ae52697.chunk.js.gz": "/demo/react-admin/static/js/11.6ae52697.chunk.js.gz",
     "static/js/2.f94e31e4.chunk.js.gz": "/demo/react-admin/static/js/2.f94e31e4.chunk.js.gz",
     "static/js/3.51c0bcae.chunk.js.gz": "/demo/react-admin/static/js/3.51c0bcae.chunk.js.gz",
-    "static/js/main.0cb2b36d.js.gz": "/demo/react-admin/static/js/main.0cb2b36d.js.gz",
+    "static/js/main.bd6c0881.js.gz": "/demo/react-admin/static/js/main.bd6c0881.js.gz",
     "static/js/vendors~main.73e94b5a.chunk.js.gz": "/demo/react-admin/static/js/vendors~main.73e94b5a.chunk.js.gz"
   },
   "entrypoints": [
     "static/css/vendors~main.df463b40.chunk.css",
     "static/js/vendors~main.73e94b5a.chunk.js",
     "static/css/main.99090e17.css",
-    "static/js/main.0cb2b36d.js"
+    "static/js/main.bd6c0881.js"
   ]
 }
