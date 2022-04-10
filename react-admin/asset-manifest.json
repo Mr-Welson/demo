@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/react-admin/static/css/main.99090e17.css",
+    "main.js": "/react-admin/static/js/main.4c53f2a7.js",
+    "vendors~main.css": "/react-admin/static/css/vendors~main.df463b40.chunk.css",
+    "vendors~main.js": "/react-admin/static/js/vendors~main.82866e09.chunk.js",
+    "static/css/2.4444f990.chunk.css": "/react-admin/static/css/2.4444f990.chunk.css",
+    "static/js/2.f94e31e4.chunk.js": "/react-admin/static/js/2.f94e31e4.chunk.js",
+    "static/css/3.d5bc1c4e.chunk.css": "/react-admin/static/css/3.d5bc1c4e.chunk.css",
+    "static/js/3.51c0bcae.chunk.js": "/react-admin/static/js/3.51c0bcae.chunk.js",
+    "static/js/4.a20c24f6.chunk.js": "/react-admin/static/js/4.a20c24f6.chunk.js",
+    "static/js/5.c8c31a19.chunk.js": "/react-admin/static/js/5.c8c31a19.chunk.js",
+    "static/js/6.21ea9671.chunk.js": "/react-admin/static/js/6.21ea9671.chunk.js",
+    "static/js/7.0e0e611d.chunk.js": "/react-admin/static/js/7.0e0e611d.chunk.js",
+    "static/js/8.46f2535b.chunk.js": "/react-admin/static/js/8.46f2535b.chunk.js",
+    "static/js/9.98a3b6e6.chunk.js": "/react-admin/static/js/9.98a3b6e6.chunk.js",
+    "static/js/10.a6b5f77a.chunk.js": "/react-admin/static/js/10.a6b5f77a.chunk.js",
+    "static/js/11.6ae52697.chunk.js": "/react-admin/static/js/11.6ae52697.chunk.js",
+    "index.html": "/react-admin/index.html",
+    "static/css/2.4444f990.chunk.css.gz": "/react-admin/static/css/2.4444f990.chunk.css.gz",
+    "static/css/3.d5bc1c4e.chunk.css.gz": "/react-admin/static/css/3.d5bc1c4e.chunk.css.gz",
+    "static/css/main.99090e17.css.gz": "/react-admin/static/css/main.99090e17.css.gz",
+    "static/css/vendors~main.df463b40.chunk.css.gz": "/react-admin/static/css/vendors~main.df463b40.chunk.css.gz",
+    "static/js/11.6ae52697.chunk.js.gz": "/react-admin/static/js/11.6ae52697.chunk.js.gz",
+    "static/js/2.f94e31e4.chunk.js.gz": "/react-admin/static/js/2.f94e31e4.chunk.js.gz",
+    "static/js/3.51c0bcae.chunk.js.gz": "/react-admin/static/js/3.51c0bcae.chunk.js.gz",
+    "static/js/main.4c53f2a7.js.gz": "/react-admin/static/js/main.4c53f2a7.js.gz",
+    "static/js/vendors~main.82866e09.chunk.js.gz": "/react-admin/static/js/vendors~main.82866e09.chunk.js.gz"
+  },
+  "entrypoints": [
+    "static/css/vendors~main.df463b40.chunk.css",
+    "static/js/vendors~main.82866e09.chunk.js",
+    "static/css/main.99090e17.css",
+    "static/js/main.4c53f2a7.js"
+  ]
+}
